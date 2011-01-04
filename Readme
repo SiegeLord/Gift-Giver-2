@@ -1,6 +1,6 @@
 Giftgiver 2
 
-Version 1.1
+Version 1.2
 
 By SiegeLord
 
@@ -34,13 +34,11 @@ Once all the naughty houses in the map are destroyed, you are taken to another m
 
 .-== Compiling ======================-.
 
-This game is written in the D programming language (http://www.digitalmars.com/d/) and requires D compilers to compile it. There is a build script that uses one of these compilers, the LDC, on Linux. Simply install this compiler (you will need the development version, most likely) and run the script.
+This game is written in the D programming language (http://www.digitalmars.com/d/) and requires D compilers to compile it. There is a build script that uses one of these compilers, the LDC, on Linux. Currently it needs the trunk version (last tried version used DMDFE 1.064) and trunk version of Tango.
 
 If you are blessed with running Ubuntu, this is particularly simple as you can just follow the instructions here: http://www.dsource.org/projects/ldc/wiki/BuildInstructionsUbuntu. Otherwise, ask me for binaries or figure it out yourself :P
 
-This game uses Allegro 4.9.16 and its image, font, ttf and primitives addons.
-
-Building under Windows is a tad more complicated. You need to install dmd compiler and compile Tango trunk yourself. Then you need to obtain Allegro 4.9.16 dll's and generate the import libraries from them via the implib.exe provided on the digital mars site. Then you can compile the game with dmd... in all, it's unpleasant, so use the precompiled binaries.
+This game uses Allegro 5.0.0 and its image, font, ttf and primitives addons. It needs the D binding from here: https://github.com/SiegeLord/DAllegro5
 
 .-== Copying ========================-.
 
