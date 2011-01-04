@@ -30,6 +30,8 @@ import bitmap = giftgiver2.bitmap;
 const int NumBitmaps = 6;
 const int Width = NumBitmaps * 512;
 const int Height = 2 * 512;
+const int JagWidth = 32;
+const int PadCount = 3;
 
 class CLevel
 {
@@ -71,7 +73,7 @@ class CLevel
 		}
 		al_set_new_bitmap_flags(ALLEGRO_VIDEO_BITMAP);
 		
-		float ground[Width / 64 + 1];
+		float ground[Width / JagWidth + 1];
 		{
 			auto y1 = rand.uniformR2(0.0f, 512.0f);
 			for(int ii = 0; ii < ground.length; ii++)
@@ -94,8 +96,13 @@ class CLevel
 		foreach(ii, ref house; Houses)
 		{
 			int x = (ii + 1) * spacing;
-			int xidx = x / 64;
-			ground[xidx] = ground[xidx + 1];
+			/* Make flat base for houses */
+			int xidx = x / JagWidth;
+			for(int jj = xidx - 1; jj < xidx + PadCount; jj++)
+			{
+				if(jj > 0 && jj < ground.length)
+					ground[jj] = ground[xidx];
+			}
 			int y = 512 + cast(int)ground[xidx];
 			
 			house = new CBadHouse(this);
@@ -114,20 +121,19 @@ class CLevel
 			while(array.contains(used_xs, x));
 			used_xs ~= x;
 			
-			int xidx = x / 64;
-			ground[xidx] = ground[xidx + 1];
+			/* Make flat base for houses */
+			int xidx = x / JagWidth;
+			for(int jj = xidx - 1; jj < xidx + PadCount; jj++)
+			{
+				if(jj > 0 && jj < ground.length)
+					ground[jj] = ground[xidx];
+			}
 			int y = 512 + cast(int)ground[xidx];
 			
 			auto house = new CNiceHouse(this);
 			house.SetPosition(x, y, 0);
 			AddObject(house);
 			Houses ~= house;
-		}
-		
-		for(int ii = 0; ii < NumBadHouses; ii++)
-		{
-			int x = (ii + 1) * Width / 64 / (NumBadHouses + 1);
-			ground[x] = ground[x + 1];
 		}
 		
 		float layer_height = 100;
@@ -161,11 +167,11 @@ class CLevel
 			for(int ii = 0; ii < NumBitmaps; ii++)
 			{		
 				auto x1 = 0.0f;
-				for(int jj = 0; jj < 512 / 64; jj++)
+				for(int jj = 0; jj < 512 / JagWidth; jj++)
 				{
-					auto x2 = (jj + 1) * 64.0f;
-					auto y1 = ground[ii * 512 / 64 + jj];
-					auto y2 = ground[ii * 512 / 64 + jj + 1];
+					auto x2 = cast(float)((jj + 1) * JagWidth);
+					auto y1 = ground[ii * 512 / JagWidth + jj];
+					auto y2 = ground[ii * 512 / JagWidth + jj + 1];
 					
 					void drawer(ALLEGRO_BITMAP* bmp)
 					{
