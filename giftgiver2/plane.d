@@ -81,7 +81,7 @@ class CPlane : CObject
 		
 		if(!Burning)
 		{
-			for(int ii = 0; ii < Weapons.length; ii++)
+			foreach(ii, weapon; Weapons)
 			{
 				SVector2D fire_pos;
 				if(ii == 0)
@@ -96,7 +96,7 @@ class CPlane : CObject
 				}
 				if(FiringWeapon[ii])
 				{
-					Weapons[ii].Fire(fire_pos, GetTheta(), Velocity);
+					weapon.Fire(fire_pos, GetTheta(), Velocity);
 				}
 			}
 			

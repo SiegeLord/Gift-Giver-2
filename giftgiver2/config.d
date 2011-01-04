@@ -65,8 +65,8 @@ class CConfiguration
 			
 			auto ret = new int[def.length];
 			
-			for(int ii = 0; ii < def.length; ii++)
-				ret[ii] = to!(int)(numbers[ii], def[ii]);
+			foreach(ii, ref entry; ret)
+				entry = to!(int)(numbers[ii], def[ii]);
 			
 			return ret;
 		}
@@ -84,8 +84,8 @@ class CConfiguration
 			
 			auto ret = new float[def.length];
 			
-			for(int ii = 0; ii < def.length; ii++)
-				ret[ii] = to!(float)(numbers[ii], def[ii]);
+			foreach(ii, ref entry; ret)
+				entry = to!(float)(numbers[ii], def[ii]);
 			
 			return ret;
 		}

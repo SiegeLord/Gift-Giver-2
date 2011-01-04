@@ -49,24 +49,24 @@ class CLevel
 		
 		auto old_target = al_get_target_bitmap();
 		
-		for(int ii = 0; ii < NumBitmaps; ii++)
+		foreach(ref bmp; VideoBitmaps)
 		{
-			VideoBitmaps[ii] = al_create_bitmap(512, 512);
-			if(!VideoBitmaps[ii])
+			bmp = al_create_bitmap(512, 512);
+			if(!bmp)
 				throw new Exception("Failed to create the level bitmaps... :(");
-			al_set_target_bitmap(VideoBitmaps[ii]);
+			al_set_target_bitmap(bmp);
 			al_clear_to_color(ColorFixer(ALLEGRO_COLOR(0, 0, 0, 0)));
 		}
 		al_set_target_bitmap(old_target);
 		
 		al_set_new_bitmap_flags(ALLEGRO_MEMORY_BITMAP);
-		for(int ii = 0; ii < NumBitmaps; ii++)
+		foreach(ref bmp; MemoryBitmaps)
 		{
-			MemoryBitmaps[ii] = al_create_bitmap(512, 512);
-			if(!MemoryBitmaps[ii])
+			bmp = al_create_bitmap(512, 512);
+			if(!bmp)
 				throw new Exception("Failed to create the level bitmaps... :(");
 			
-			al_set_target_bitmap(MemoryBitmaps[ii]);
+			al_set_target_bitmap(bmp);
 			al_clear_to_color(ColorFixer(ALLEGRO_COLOR(0, 0, 0, 0)));
 		}
 		al_set_new_bitmap_flags(ALLEGRO_VIDEO_BITMAP);
@@ -90,17 +90,17 @@ class CLevel
 		}
 		
 		int spacing = cast(int)(Width / (NumBadHouses + 1));
-		for(int ii = 0; ii < NumBadHouses; ii++)
+		Houses.length = NumBadHouses;
+		foreach(ii, ref house; Houses)
 		{
 			int x = (ii + 1) * spacing;
 			int xidx = x / 64;
 			ground[xidx] = ground[xidx + 1];
 			int y = 512 + cast(int)ground[xidx];
 			
-			auto house = new CBadHouse(this);
+			house = new CBadHouse(this);
 			house.SetPosition(x, y, 0);
 			AddObject(house);
-			Houses ~= house;
 		}
 		
 		int[] used_xs;
@@ -184,15 +184,15 @@ class CLevel
 		
 		UseGameTransform();
 		
-		for(int ii = 0; ii < Stars.length; ii++)
+		foreach(ref star; Stars)
 		{
-			Stars[ii].X = rand.uniformR2(0, Width);
-			Stars[ii].Y = rand.uniformR2(0, 400);
+			star.X = rand.uniformR2(0, Width);
+			star.Y = rand.uniformR2(0, 400);
 		}
-		for(int ii = 0; ii < CloudPositions.length; ii++)
+		foreach(ref cloud; CloudPositions)
 		{
-			CloudPositions[ii].X = rand.uniformR2(0, Width);
-			CloudPositions[ii].Y = rand.uniformR2(350, 500);
+			cloud.X = rand.uniformR2(0, Width);
+			cloud.Y = rand.uniformR2(350, 500);
 		}
 		
 		ExplosionSound = audio.Load("explosion.ogg");
