@@ -88,7 +88,7 @@ void Init()
 	                       1000];
 	
 	auto config = new CConfiguration("scores.ini");
-	CandidateName = config.GetString("", "name", "Santa");
+	CandidateName = config.GetString("", "name", "Santa").dup;
 	for(int ii = 0; ii < 10; ii++)
 	{
 		auto key = toString(ii);
