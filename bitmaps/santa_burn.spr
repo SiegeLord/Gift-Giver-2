@@ -1,0 +1,5 @@
+bitmap = santa_burn.png
+framelen = 0.15
+numframes = 2
+width = 32
+height = 32

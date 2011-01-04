@@ -1,0 +1,48 @@
+Giftgiver 2
+
+Version 1.1
+
+By SiegeLord
+
+ChristmasHack 2009
+
+.-== Introduction ==================-.
+
+You are Santa piloting an aeroplane carrying presents for all the nice children in the world. The naughty children however got angry that they get coal every year, so they assembled an aerial force to shoot down Santa and steal his presents. Little did they know that Santa's plane is armed to the teeth with chain guns and bombs...
+
+.-== Controls ======================-.
+
+Left/Right - Pivot up/down
+Down - Flip upside down
+X - Throttle up (press multiple times if the engine stalls)
+Z - Throttle down
+C - Throw a present
+B - Throw a bomb
+P - Pause the game
+Space - Fire the chaingun
+Esc - Exit the game
+
+.-== Configuration ==================-.
+
+See configuration.ini for some configuration options. The most useful ones are probably the screen resolution ones and the play music to turn the annoying music off ;). This game will try to scale/letterbox to accomodate any screen resolution.
+
+.-== Objective ======================-.
+
+The goal of this game is to destroy the naughty children's homes using bombs (they are armoured, so bullets won't do the trick). Enemy airplanes will hinder you, but you don't have to destroy them if you do not want to. Giving presents to the nice houses will give you health powerups. Avoid running into the sides of the level! If you fly away into space remember to press X repeatedly to restart the engine.
+
+Once all the naughty houses in the map are destroyed, you are taken to another map with even more houses for you to destroy... this continues ad infinitum, until you run out of lives, or patience ;)
+
+.-== Compiling ======================-.
+
+This game is written in the D programming language (http://www.digitalmars.com/d/) and requires D compilers to compile it. There is a build script that uses one of these compilers, the LDC, on Linux. Simply install this compiler (you will need the development version, most likely) and run the script.
+
+If you are blessed with running Ubuntu, this is particularly simple as you can just follow the instructions here: http://www.dsource.org/projects/ldc/wiki/BuildInstructionsUbuntu. Otherwise, ask me for binaries or figure it out yourself :P
+
+This game uses Allegro 4.9.16 and its image, font, ttf and primitives addons.
+
+Building under Windows is a tad more complicated. You need to install dmd compiler and compile Tango trunk yourself. Then you need to obtain Allegro 4.9.16 dll's and generate the import libraries from them via the implib.exe provided on the digital mars site. Then you can compile the game with dmd... in all, it's unpleasant, so use the precompiled binaries.
+
+.-== Copying ========================-.
+
+This mess of a game is licensed under GPL 3. Most of it is original, except the font, which I got off some site.
+
