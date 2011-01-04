@@ -92,7 +92,7 @@ void Init()
 	for(int ii = 0; ii < 10; ii++)
 	{
 		auto key = toString(ii);
-		Scores[ii].Name = config.GetString("", key, default_names[ii]);
+		Scores[ii].Name = config.GetString("", key, default_names[ii]).dup;
 		key ~= "s";
 		Scores[ii].Score = config.GetInt("", key, default_scores[ii]);
 	}
